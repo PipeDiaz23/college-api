@@ -1,0 +1,172 @@
+{
+    "sucursales": [
+        {
+            "nombre": "Sucursal Centro",
+            "direccion": "Calle 1 # 100-10, Manizales",
+            "telefono": "3123456789"
+        },
+        {
+            "nombre": "Sucursal Norte",
+            "direccion": "Avenida 2 # 200-20, Manizales",
+            "telefono": "3109876543"
+        },
+        {
+            "nombre": "Sucursal Sur",
+            "direccion": "Calle 3 # 300-30, Manizales",
+            "telefono": "3112345678"
+        },
+        {
+            "nombre": "Sucursal Occidente",
+            "direccion": "Carrera 4 # 400-40, Manizales",
+            "telefono": "3134567890"
+        },
+        {
+            "nombre": "Sucursal Oriente",
+            "direccion": "Calle 5 # 500-50, Manizales",
+            "telefono": "3145678901"
+        }
+    ],
+    "proveedores": [
+        {
+            "nombre": "Distribuciones MotoWorld",
+            "telefono": "3001234567",
+            "correo": "contacto@motoworld.com"
+        },
+        {
+            "nombre": "Accesorios y Repuestos S.A.S.",
+            "telefono": "3102345678",
+            "correo": "ventas@accesoriosrepuestos.com"
+        },
+        {
+            "nombre": "Motos y Más Ltda.",
+            "telefono": "3203456789",
+            "correo": "info@motosymas.com"
+        },
+        {
+            "nombre": "Motores y Componentes",
+            "telefono": "3304567890",
+            "correo": "soporte@motoresycomponentes.com"
+        },
+        {
+            "nombre": "Proveedor de Motos Premium",
+            "telefono": "3405678901",
+            "correo": "atencioncliente@premium.com"
+        }
+    ],
+    "clientes": [
+        {
+            "nombre": "Juan",
+            "apellido": "Pérez",
+            "telefono": "3112345678",
+            "correo": "juan.perez@example.com",
+            "direccion": "Calle 10 # 50-20, Manizales"
+        },
+        {
+            "nombre": "María",
+            "apellido": "González",
+            "telefono": "3203456789",
+            "correo": "maria.gonzalez@example.com",
+            "direccion": "Carrera 15 # 35-10, Manizales"
+        },
+        {
+            "nombre": "Andrés",
+            "apellido": "Ramírez",
+            "telefono": "3004567890",
+            "correo": "andres.ramirez@example.com",
+            "direccion": "Avenida 3 # 70-15, Manizales"
+        },
+        {
+            "nombre": "Sofía",
+            "apellido": "Martínez",
+            "telefono": "3105678901",
+            "correo": "sofia.martinez@example.com",
+            "direccion": "Calle 7 # 25-30, Manizales"
+        },
+        {
+            "nombre": "Carlos",
+            "apellido": "Hernández",
+            "telefono": "3116789012",
+            "correo": "carlos.hernandez@example.com",
+            "direccion": "Carrera 9 # 15-40, Manizales"
+        }
+    ],
+    "proveedores": [
+        {
+            "marca": "Yamaha",
+            "modelo": "MT-07",
+            "ano": 2023,
+            "precio": 8000.00,
+            "id_sucursal": 1,
+            "id_proveedor": 1
+        },
+        {
+            "marca": "Honda",
+            "modelo": "CB500F",
+            "ano": 2022,
+            "precio": 6500.00,
+            "id_sucursal": 2,
+            "id_proveedor": 2
+        },
+        {
+            "marca": "Kawasaki",
+            "modelo": "Ninja 400",
+            "ano": 2024,
+            "precio": 7500.00,
+            "id_sucursal": 1,
+            "id_proveedor": 3
+        },
+        {
+            "marca": "Suzuki",
+            "modelo": "GSX250R",
+            "ano": 2021,
+            "precio": 5500.00,
+            "id_sucursal": 2,
+            "id_proveedor": 4
+        },
+        {
+            "marca": "BMW",
+            "modelo": "G 310 R",
+            "ano": 2023,
+            "precio": 9000.00,
+            "id_sucursal": 3,
+            "id_proveedor": 5
+        }
+    ],
+    "ventas": [
+        {
+            "id_cliente": 1,
+            "id_producto": 1,
+            "id_empleado": 1,
+            "fecha_venta": "2024-10-01",
+            "cantidad": 1
+        },
+        {
+            "id_cliente": 2,
+            "id_producto": 2,
+            "id_empleado": 2,
+            "fecha_venta": "2024-10-05",
+            "cantidad": 1
+        },
+        {
+            "id_cliente": 3,
+            "id_producto": 3,
+            "id_empleado": 1,
+            "fecha_venta": "2024-10-10",
+            "cantidad": 2
+        },
+        {
+            "id_cliente": 4,
+            "id_producto": 4,
+            "id_empleado": 3,
+            "fecha_venta": "2024-10-15",
+            "cantidad": 1
+        },
+        {
+            "id_cliente": 1,
+            "id_producto": 5,
+            "id_empleado": 2,
+            "fecha_venta": "2024-10-20",
+            "cantidad": 1
+        }
+    ]
+}

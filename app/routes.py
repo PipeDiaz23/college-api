@@ -24,10 +24,8 @@ def crear_sucursal(sucursal: SucursalCreate):
         VALUES (%s, %s, %s)
         """
         values = (sucursal.nombre, sucursal.direccion, sucursal.telefono)
-        
         cursor.execute(query, values)
         conn.commit()
-        
         sucursal_id = cursor.lastrowid
         return Sucursal(id_sucursal=sucursal_id, **sucursal.dict())
     except Exception as e:
@@ -65,7 +63,6 @@ def crear_sucursales_bulk(sucursales: List[SucursalCreate]):
             VALUES (%s, %s, %s)
             """
             values = (sucursal.nombre, sucursal.direccion, sucursal.telefono)
-            
             cursor.execute(query, values)
             sucursal_id = cursor.lastrowid
             created_sucursales.append(Sucursal(id_sucursal=sucursal_id, **sucursal.dict()))
@@ -91,10 +88,8 @@ def crear_proveedor(proveedor: ProveedorCreate):
         VALUES (%s, %s, %s)
         """
         values = (proveedor.nombre, proveedor.telefono, proveedor.correo)
-        
         cursor.execute(query, values)
         conn.commit()
-        
         proveedor_id = cursor.lastrowid
         return Proveedor(id_proveedor=proveedor_id, **proveedor.dict())
     except Exception as e:
@@ -132,7 +127,6 @@ def crear_proveedores_bulk(proveedores: List[ProveedorCreate]):
             VALUES (%s, %s, %s)
             """
             values = (proveedor.nombre, proveedor.telefono, proveedor.correo)
-
             cursor.execute(query, values)
             proveedor_id = cursor.lastrowid
             created_proveedores.append(Proveedor(id_proveedor=proveedor_id, **proveedor.dict()))
@@ -141,6 +135,28 @@ def crear_proveedores_bulk(proveedores: List[ProveedorCreate]):
         return created_proveedores
     except Exception as e:
         conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cursor.close()
+        conn.close()
+
+# Endpoints para Clientes
+@router.post("/clientes/", response_model=Cliente, tags=["Clientes"])
+def crear_cliente(cliente: ClienteCreate):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    try:
+        query = """
+        INSERT INTO clientes (nombre, apellido, telefono, correo, direccion)
+        VALUES (%s, %s, %s, %s, %s)
+        """
+        values = (cliente.nombre, cliente.apellido, cliente.telefono, cliente.correo, cliente.direccion)
+        cursor.execute(query, values)
+        cliente_id = cursor.lastrowid
+        conn.commit()
+        return Cliente(id_cliente=cliente_id, **cliente.dict())
+    except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         cursor.close()
@@ -161,6 +177,7 @@ def listar_clientes():
     finally:
         cursor.close()
         conn.close()
+
 
 @router.post("/clientes/bulk/", response_model=List[Cliente], tags=["Clientes"])
 def crear_clientes_bulk(clientes: List[ClienteCreate]):
@@ -183,6 +200,28 @@ def crear_clientes_bulk(clientes: List[ClienteCreate]):
         return created_clientes
     except Exception as e:
         conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@router.post("/empleados/", response_model=Empleado, tags=["Empleados"])
+def crear_empleado(empleado: EmpleadoCreate):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    try:
+        query = """
+        INSERT INTO empleados (nombre, apellido, puesto, telefono, correo, id_sucursal)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        values = (empleado.nombre, empleado.apellido, empleado.puesto, empleado.telefono, empleado.correo, empleado.id_sucursal)
+        cursor.execute(query, values)
+        empleado_id = cursor.lastrowid
+        conn.commit()
+        return Empleado(id_empleado=empleado_id, **empleado.dict())
+    except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         cursor.close()
@@ -225,6 +264,28 @@ def crear_empleados_bulk(empleados: List[EmpleadoCreate]):
         return created_empleados
     except Exception as e:
         conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@router.post("/productos/", response_model=Producto, tags=["Productos"])
+def crear_producto(producto: ProductoCreate):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    try:
+        query = """
+        INSERT INTO productos (marca, modelo, ano, precio, id_sucursal, id_proveedor)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        values = (producto.marca, producto.modelo, producto.ano, producto.precio, producto.id_sucursal, producto.id_proveedor)
+        cursor.execute(query, values)
+        producto_id = cursor.lastrowid
+        conn.commit()
+        return Producto(id_producto=producto_id, **producto.dict())
+    except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         cursor.close()
@@ -288,6 +349,29 @@ def listar_ventas():
         cursor.close()
         conn.close()
 
+@router.post("/ventas/", response_model=Venta, tags=["Ventas"])
+def crear_venta(venta: VentaCreate):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    try:
+        query = """
+        INSERT INTO ventas (id_cliente, id_producto, id_empleado, fecha_venta, cantidad)
+        VALUES (%s, %s, %s, %s, %s)
+        """
+        values = (venta.id_cliente, venta.id_producto, venta.id_empleado, venta.fecha_venta, venta.cantidad)
+        cursor.execute(query, values)
+        venta_id = cursor.lastrowid
+        conn.commit()
+        return Venta(id_venta=venta_id, **venta.dict())
+    except Exception as e:
+        print(f"Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cursor.close()
+        conn.close()
+
+
 @router.post("/ventas/bulk/", response_model=List[Venta], tags=["Ventas"])
 def crear_ventas_bulk(ventas: List[VentaCreate]):
     conn = get_db_connection()
@@ -312,4 +396,6 @@ def crear_ventas_bulk(ventas: List[VentaCreate]):
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         cursor.close()
-        conn.close()        
+        conn.close()  
+
+        conn.close()      
