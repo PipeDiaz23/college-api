@@ -47,3 +47,8 @@ Create file *requirements.txt*
 ```bash
     git checkout -b feature/"name of the branch"
 ```
+
+## Steps to fetch changes from main branch
+```bash
+    git fetch
+```
