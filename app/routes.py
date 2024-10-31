@@ -1,18 +1,10 @@
-from fastapi import APIRouter, HTTPException
-from app.models import (
-    SucursalCreate, Sucursal,
-    ProveedorCreate, Proveedor,
-    ClienteCreate, Cliente,
-    EmpleadoCreate, Empleado,
-    ProductoCreate, Producto,
-    VentaCreate, Venta
-)
+from fastapi import APIRouter, HTTPException, Query
+from typing import List, Optional
+from datetime import date
 from app.database import get_db_connection
-from typing import List
+from app.models import *
 
 router = APIRouter()
-
-# Endpoints para Sucursales
 @router.post("/sucursales/", response_model=Sucursal, tags=["Sucursales"])
 def crear_sucursal(sucursal: SucursalCreate):
     conn = get_db_connection()
@@ -76,7 +68,6 @@ def crear_sucursales_bulk(sucursales: List[SucursalCreate]):
         cursor.close()
         conn.close()
 
-# Endpoints para Proveedores
 @router.post("/proveedores/", response_model=Proveedor, tags=["Proveedores"])
 def crear_proveedor(proveedor: ProveedorCreate):
     conn = get_db_connection()
@@ -140,7 +131,6 @@ def crear_proveedores_bulk(proveedores: List[ProveedorCreate]):
         cursor.close()
         conn.close()
 
-# Endpoints para Clientes
 @router.post("/clientes/", response_model=Cliente, tags=["Clientes"])
 def crear_cliente(cliente: ClienteCreate):
     conn = get_db_connection()
@@ -399,3 +389,356 @@ def crear_ventas_bulk(ventas: List[VentaCreate]):
         conn.close()  
 
         conn.close()      
+
+
+@router.get("/query1/", tags=["Query1 ventas por sucursal"])
+async def ventas_por_sucursal():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    query = """
+    SELECT 
+        s.nombre as sucursal,
+        COUNT(v.id_venta) as total_ventas,
+        AVG(p.precio) as precio_promedio
+    FROM sucursales s
+    LEFT JOIN productos p ON s.id_sucursal = p.id_sucursal
+    LEFT JOIN ventas v ON p.id_producto = v.id_producto
+    GROUP BY s.id_sucursal
+    """
+    cursor.execute(query)
+    return cursor.fetchall()
+
+@router.get("/query2/", tags=["Query2 productos por precio"])
+async def productos_por_precio(
+    precio_min: float = Query(..., description="Precio mínimo"),
+    precio_max: float = Query(..., description="Precio máximo")
+):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT p.*, s.nombre as sucursal, pr.nombre as proveedor
+    FROM productos p
+    INNER JOIN sucursales s ON p.id_sucursal = s.id_sucursal
+    INNER JOIN proveedores pr ON p.id_proveedor = pr.id_proveedor
+    WHERE p.precio BETWEEN %s AND %s
+    """
+    cursor.execute(query, (precio_min, precio_max))
+    return cursor.fetchall()
+
+@router.get("/query3/", tags=["Query3 vendedores"])
+async def top_vendedores(
+    limite: int = Query(5, description="Cantidad de vendedores a mostrar")
+):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        e.nombre,
+        e.apellido,
+        s.nombre as sucursal,
+        COUNT(v.id_venta) as total_ventas,
+        SUM(p.precio * v.cantidad) as valor_total_ventas
+    FROM empleados e
+    INNER JOIN ventas v ON e.id_empleado = v.id_empleado
+    INNER JOIN productos p ON v.id_producto = p.id_producto
+    LEFT JOIN sucursales s ON e.id_sucursal = s.id_sucursal
+    GROUP BY e.id_empleado
+    ORDER BY total_ventas DESC
+    LIMIT %s
+    """
+    cursor.execute(query, (limite,))
+    return cursor.fetchall()
+
+@router.get("/query4/{id_cliente}", tags=["Query4 historial compras cliente"])
+async def historial_compras_cliente(id_cliente: int):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        v.fecha_venta,
+        p.marca,
+        p.modelo,
+        p.precio,
+        v.cantidad,
+        (p.precio * v.cantidad) as total,
+        e.nombre as vendedor,
+        s.nombre as sucursal
+    FROM ventas v
+    INNER JOIN productos p ON v.id_producto = p.id_producto
+    INNER JOIN empleados e ON v.id_empleado = e.id_empleado
+    INNER JOIN sucursales s ON p.id_sucursal = s.id_sucursal
+    WHERE v.id_cliente = %s
+    ORDER BY v.fecha_venta DESC
+    """
+    cursor.execute(query, (id_cliente,))
+    return cursor.fetchall()
+
+@router.get("/query5/{id_sucursal}", tags=["Query5 ventas por sucursal"])
+async def inventario_sucursal(id_sucursal: int):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        p.*,
+        pr.nombre as proveedor,
+        COUNT(v.id_venta) as ventas_realizadas
+    FROM productos p
+    LEFT JOIN proveedores pr ON p.id_proveedor = pr.id_proveedor
+    LEFT JOIN ventas v ON p.id_producto = v.id_producto
+    WHERE p.id_sucursal = %s
+    GROUP BY p.id_producto
+    """
+    cursor.execute(query, (id_sucursal,))
+    return cursor.fetchall()
+
+@router.get("/query6/", tags=["Query6 productos mas vendidos"])
+async def productos_mas_vendidos(
+    fecha_inicio: date = Query(..., description="Fecha inicial"),
+    fecha_fin: date = Query(..., description="Fecha final"),
+    limite: int = Query(10, description="Cantidad de productos a mostrar")
+):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        p.marca,
+        p.modelo,
+        SUM(v.cantidad) as unidades_vendidas,
+        SUM(p.precio * v.cantidad) as ingresos_totales,
+        s.nombre as sucursal
+    FROM productos p
+    INNER JOIN ventas v ON p.id_producto = v.id_producto
+    LEFT JOIN sucursales s ON p.id_sucursal = s.id_sucursal
+    WHERE v.fecha_venta BETWEEN %s AND %s
+    GROUP BY p.id_producto
+    ORDER BY unidades_vendidas DESC
+    LIMIT %s
+    """
+    cursor.execute(query, (fecha_inicio, fecha_fin, limite))
+    return cursor.fetchall()
+
+@router.get("/query7/", tags=["Query7 rendimiento sucursales"])
+async def rendimiento_sucursales():    
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        s.nombre as sucursal,
+        COUNT(DISTINCT e.id_empleado) as total_empleados,
+        COUNT(DISTINCT v.id_venta) as total_ventas,
+        SUM(p.precio * v.cantidad) as ingresos_totales,
+        AVG(p.precio * v.cantidad) as ticket_promedio
+    FROM sucursales s
+    LEFT JOIN empleados e ON s.id_sucursal = e.id_sucursal
+    LEFT JOIN ventas v ON e.id_empleado = v.id_empleado
+    LEFT JOIN productos p ON v.id_producto = p.id_producto
+    GROUP BY s.id_sucursal
+    ORDER BY ingresos_totales DESC
+    """
+    cursor.execute(query)    
+    return cursor.fetchall()
+
+@router.get("/query8/", tags=["Query8 analisis proveedores"])
+async def analisis_proveedores():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        pr.nombre as proveedor,
+        COUNT(p.id_producto) as total_productos,
+        AVG(p.precio) as precio_promedio,
+        MIN(p.precio) as precio_minimo,
+        MAX(p.precio) as precio_maximo,
+        COUNT(v.id_venta) as total_ventas
+    FROM proveedores pr
+    LEFT JOIN productos p ON pr.id_proveedor = p.id_proveedor
+    LEFT JOIN ventas v ON p.id_producto = v.id_producto
+    GROUP BY pr.id_proveedor
+    ORDER BY total_ventas DESC
+    """
+    cursor.execute(query)
+    return cursor.fetchall()
+
+@router.get("/query9/", tags=["Query9 clientes frecuentes"])
+async def clientes_frecuentes(
+    min_compras: int = Query(3, description="Mínimo de compras para considerar cliente frecuente")
+):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        c.nombre,
+        c.apellido,
+        COUNT(v.id_venta) as total_compras,
+        SUM(p.precio * v.cantidad) as total_gastado,
+        MAX(v.fecha_venta) as ultima_compra
+    FROM clientes c
+    INNER JOIN ventas v ON c.id_cliente = v.id_cliente
+    INNER JOIN productos p ON v.id_producto = p.id_producto
+    GROUP BY c.id_cliente
+    HAVING total_compras >= %s
+    ORDER BY total_compras DESC
+    """
+    cursor.execute(query, (min_compras,))
+    return cursor.fetchall()
+
+@router.get("/query10/", tags=["Query10 productos por año"])
+async def productos_por_ano(
+    ano: int = Query(..., description="Año del modelo")
+):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        p.*,
+        s.nombre as sucursal,
+        pr.nombre as proveedor,
+        COUNT(v.id_venta) as ventas_realizadas
+    FROM productos p
+    LEFT JOIN sucursales s ON p.id_sucursal = s.id_sucursal
+    LEFT JOIN proveedores pr ON p.id_proveedor = pr.id_proveedor
+    LEFT JOIN ventas v ON p.id_producto = v.id_producto
+    WHERE p.ano = %s
+    GROUP BY p.id_producto
+    """
+    cursor.execute(query, (ano,))
+    return cursor.fetchall()
+
+@router.get("/query11/", tags=["Query11 ventas periodo sucursal"])
+async def ventas_periodo_sucursal(
+    fecha_inicio: date = Query(..., description="Fecha inicial"),
+    fecha_fin: date = Query(..., description="Fecha final"),
+    id_sucursal: Optional[int] = Query(None, description="ID de la sucursal (opcional)")
+):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    base_query = """
+    SELECT 
+        s.nombre as sucursal,
+        DATE_FORMAT(v.fecha_venta, '%Y-%m') as mes,
+        COUNT(v.id_venta) as total_ventas,
+        SUM(p.precio * v.cantidad) as ingresos_totales
+    FROM sucursales s
+    LEFT JOIN productos p ON s.id_sucursal = p.id_sucursal
+    LEFT JOIN ventas v ON p.id_producto = v.id_producto
+    WHERE v.fecha_venta BETWEEN %s AND %s
+    """
+    
+    params = [fecha_inicio, fecha_fin]
+    if id_sucursal:
+        base_query += " AND s.id_sucursal = %s"
+        params.append(id_sucursal)
+    
+    base_query += " GROUP BY s.id_sucursal, mes ORDER BY mes, s.nombre"
+    
+    cursor.execute(base_query, tuple(params))
+    return cursor.fetchall()
+
+@router.get("/query12/", tags=["Query12 empleados y ventas"])
+async def empleados_ventas():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        e.nombre,
+        e.apellido,
+        s.nombre as sucursal,
+        COUNT(v.id_venta) as total_ventas,
+        MAX(v.fecha_venta) as fecha_ultima_venta
+    FROM empleados e
+    LEFT JOIN sucursales s ON e.id_sucursal = s.id_sucursal
+    LEFT JOIN ventas v ON e.id_empleado = v.id_empleado
+    GROUP BY e.id_empleado, e.nombre, e.apellido, s.nombre
+    ORDER BY total_ventas ASC
+    """
+    cursor.execute(query)
+    return cursor.fetchall()
+
+@router.get("/query13/", tags=["Query13 productos sin movimiento"])
+async def productos_sin_movimiento():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        p.*,
+        s.nombre as sucursal,
+        pr.nombre as proveedor
+    FROM productos p
+    LEFT JOIN sucursales s ON p.id_sucursal = s.id_sucursal
+    LEFT JOIN proveedores pr ON p.id_proveedor = pr.id_proveedor
+    LEFT JOIN ventas v ON p.id_producto = v.id_producto
+    WHERE v.id_venta IS NULL
+    ORDER BY p.precio DESC
+    """
+    cursor.execute(query)
+    return cursor.fetchall()
+
+@router.get("/query14/", tags=["Query14 ventas por marca"])
+async def ventas_por_marca(
+    ano: Optional[int] = Query(None, description="Año específico (opcional)")
+):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        p.marca,
+        COUNT(v.id_venta) as total_ventas,
+        SUM(v.cantidad) as unidades_vendidas,
+        AVG(p.precio) as precio_promedio,
+        SUM(p.precio * v.cantidad) as ingresos_totales
+    FROM productos p
+    LEFT JOIN ventas v ON p.id_producto = v.id_producto
+    WHERE 1=1
+    """
+    
+    params = []
+    if ano:
+        query += " AND YEAR(v.fecha_venta) = %s"
+        params.append(ano)
+    
+    query += " GROUP BY p.marca ORDER BY total_ventas DESC"
+    
+    cursor.execute(query, tuple(params) if params else None)
+    return cursor.fetchall()
+
+@router.get("/query15/", tags=["Query15 eficiencia vendedores"])
+async def eficiencia_vendedores(
+    fecha_inicio: date = Query(..., description="Fecha inicial"),
+    fecha_fin: date = Query(..., description="Fecha final")
+):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    query = """
+    SELECT 
+        s.nombre as sucursal,
+        e.nombre,
+        e.apellido,
+        COUNT(v.id_venta) as total_ventas,
+        SUM(p.precio * v.cantidad) as ingresos_totales,
+        AVG(p.precio * v.cantidad) as ticket_promedio,
+        COUNT(v.id_venta) / 
+            DATEDIFF(%s, %s) as ventas_por_dia
+    FROM empleados e
+    INNER JOIN sucursales s ON e.id_sucursal = s.id_sucursal
+    LEFT JOIN ventas v ON e.id_empleado = v.id_empleado
+    LEFT JOIN productos p ON v.id_producto = p.id_producto
+    WHERE v.fecha_venta BETWEEN %s AND %s
+    GROUP BY e.id_empleado
+    ORDER BY ventas_por_dia DESC
+    """
+    cursor.execute(query, (fecha_fin, fecha_inicio, fecha_inicio, fecha_fin))
+    return cursor.fetchall()

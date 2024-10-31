@@ -2,7 +2,6 @@ from pydantic import BaseModel, Field, EmailStr
 from datetime import date
 from typing import Optional
 
-# Modelo para Sucursal
 class SucursalCreate(BaseModel):
     nombre: str = Field(..., description="Nombre de la sucursal")
     direccion: Optional[str] = Field(None, description="Dirección de la sucursal")
@@ -11,7 +10,6 @@ class SucursalCreate(BaseModel):
 class Sucursal(SucursalCreate):
     id_sucursal: int
 
-# Modelo para Proveedor
 class ProveedorCreate(BaseModel):
     nombre: str = Field(..., description="Nombre del proveedor")
     telefono: Optional[str] = Field(None, description="Teléfono del proveedor")
@@ -20,7 +18,6 @@ class ProveedorCreate(BaseModel):
 class Proveedor(ProveedorCreate):
     id_proveedor: int
 
-# Modelo para Cliente
 class ClienteCreate(BaseModel):
     nombre: str = Field(..., description="Nombre del cliente")
     apellido: str = Field(..., description="Apellido del cliente")
@@ -31,7 +28,6 @@ class ClienteCreate(BaseModel):
 class Cliente(ClienteCreate):
     id_cliente: int
 
-# Modelo para Empleado
 class EmpleadoCreate(BaseModel):
     nombre: str = Field(..., description="Nombre del empleado")
     apellido: str = Field(..., description="Apellido del empleado")
@@ -43,7 +39,6 @@ class EmpleadoCreate(BaseModel):
 class Empleado(EmpleadoCreate):
     id_empleado: int
 
-# Modelo para Producto
 class ProductoCreate(BaseModel):
     marca: str = Field(..., description="Marca del vehículo")
     modelo: str = Field(..., description="Modelo del vehículo")
@@ -55,7 +50,6 @@ class ProductoCreate(BaseModel):
 class Producto(ProductoCreate):
     id_producto: int
 
-# Modelo para Venta
 class VentaCreate(BaseModel):
     id_cliente: int = Field(..., description="ID del cliente")
     id_producto: int = Field(..., description="ID del producto")

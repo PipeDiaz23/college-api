@@ -1,172 +1,815 @@
 {
-    "sucursales": [
-        {
-            "nombre": "Sucursal Centro",
-            "direccion": "Calle 1 # 100-10, Manizales",
-            "telefono": "3123456789"
-        },
-        {
-            "nombre": "Sucursal Norte",
-            "direccion": "Avenida 2 # 200-20, Manizales",
-            "telefono": "3109876543"
-        },
-        {
-            "nombre": "Sucursal Sur",
-            "direccion": "Calle 3 # 300-30, Manizales",
-            "telefono": "3112345678"
-        },
-        {
-            "nombre": "Sucursal Occidente",
-            "direccion": "Carrera 4 # 400-40, Manizales",
-            "telefono": "3134567890"
-        },
-        {
-            "nombre": "Sucursal Oriente",
-            "direccion": "Calle 5 # 500-50, Manizales",
-            "telefono": "3145678901"
-        }
-    ],
+    "sucursales": 
+        [
+            {
+              "nombre": "Carlos Pérez",
+              "direccion": "Calle 12 #34-56, Medellín",
+              "telefono": "3145678901"
+            },
+            {
+              "nombre": "Lucía García",
+              "direccion": "Carrera 8 #21-45, Bogotá",
+              "telefono": "3112345678"
+            },
+            {
+              "nombre": "Ana Martínez",
+              "direccion": "Calle 5 #67-89, Cali",
+              "telefono": "3109876543"
+            },
+            {
+              "nombre": "Juan Herrera",
+              "direccion": "Avenida 6 #23-90, Bucaramanga",
+              "telefono": "3174567890"
+            },
+            {
+              "nombre": "María López",
+              "direccion": "Carrera 7 #15-32, Cartagena",
+              "telefono": "3123456789"
+            },
+            {
+              "nombre": "Pedro González",
+              "direccion": "Calle 13 #44-21, Manizales",
+              "telefono": "3198765432"
+            },
+            {
+              "nombre": "Sara Moreno",
+              "direccion": "Avenida 4 #56-43, Ibagué",
+              "telefono": "3134567890"
+            },
+            {
+              "nombre": "Javier Cruz",
+              "direccion": "Carrera 12 #45-67, Pereira",
+              "telefono": "3141234567"
+            },
+            {
+              "nombre": "Laura Ríos",
+              "direccion": "Calle 9 #34-22, Armenia",
+              "telefono": "3186543210"
+            },
+            {
+              "nombre": "Andrés Villanueva",
+              "direccion": "Avenida 8 #32-19, Cúcuta",
+              "telefono": "3104561234"
+            },
+            {
+              "nombre": "Catalina Castro",
+              "direccion": "Carrera 14 #21-33, Barranquilla",
+              "telefono": "3157890123"
+            },
+            {
+              "nombre": "Ricardo Torres",
+              "direccion": "Calle 6 #78-56, Santa Marta",
+              "telefono": "3123450987"
+            },
+            {
+              "nombre": "Paola Medina",
+              "direccion": "Avenida 3 #12-45, Neiva",
+              "telefono": "3191234567"
+            },
+            {
+              "nombre": "Fernando Díaz",
+              "direccion": "Carrera 5 #67-98, Pasto",
+              "telefono": "3149876543"
+            },
+            {
+              "nombre": "Elena Carvajal",
+              "direccion": "Calle 2 #45-32, Montería",
+              "telefono": "3161234567"
+            },
+            {
+              "nombre": "Daniel Arango",
+              "direccion": "Carrera 3 #56-78, Popayán",
+              "telefono": "3176543210"
+            },
+            {
+              "nombre": "Carmen Ortiz",
+              "direccion": "Calle 10 #22-11, Tunja",
+              "telefono": "3112345679"
+            },
+            {
+              "nombre": "Oscar Jiménez",
+              "direccion": "Avenida 7 #44-55, Villavicencio",
+              "telefono": "3159876543"
+            },
+            {
+              "nombre": "Verónica Vargas",
+              "direccion": "Carrera 9 #12-34, Sincelejo",
+              "telefono": "3198765431"
+            },
+            {
+              "nombre": "Sofía Reyes",
+              "direccion": "Calle 4 #11-22, Quibdó",
+              "telefono": "3181234560"
+            }
+          ]
+          ,
     "proveedores": [
         {
-            "nombre": "Distribuciones MotoWorld",
-            "telefono": "3001234567",
-            "correo": "contacto@motoworld.com"
+          "nombre": "Proveedora Andina",
+          "telefono": "3145678901",
+          "correo": "contacto@proveedoraandina.com"
         },
         {
-            "nombre": "Accesorios y Repuestos S.A.S.",
-            "telefono": "3102345678",
-            "correo": "ventas@accesoriosrepuestos.com"
+          "nombre": "Suministros del Norte",
+          "telefono": "3112345678",
+          "correo": "ventas@suministrosnorte.com"
         },
         {
-            "nombre": "Motos y Más Ltda.",
-            "telefono": "3203456789",
-            "correo": "info@motosymas.com"
+          "nombre": "Distribuciones Colombianas",
+          "telefono": "3109876543",
+          "correo": "info@distribucionescolombianas.com"
         },
         {
-            "nombre": "Motores y Componentes",
-            "telefono": "3304567890",
-            "correo": "soporte@motoresycomponentes.com"
+          "nombre": "Abastecimientos Generales",
+          "telefono": "3174567890",
+          "correo": "servicio@abastecimientosgen.com"
         },
         {
-            "nombre": "Proveedor de Motos Premium",
-            "telefono": "3405678901",
-            "correo": "atencioncliente@premium.com"
+          "nombre": "Proveedora del Pacífico",
+          "telefono": "3123456789",
+          "correo": "contacto@proveedorapacifico.com"
+        },
+        {
+          "nombre": "Sumindustrias",
+          "telefono": "3198765432",
+          "correo": "info@sumindustrias.com"
+        },
+        {
+          "nombre": "Tecnosuministros",
+          "telefono": "3134567890",
+          "correo": "soporte@tecnosuministros.com"
+        },
+        {
+          "nombre": "Insumos y Más",
+          "telefono": "3141234567",
+          "correo": "ventas@insumosymas.com"
+        },
+        {
+          "nombre": "Central de Abastecimiento",
+          "telefono": "3186543210",
+          "correo": "contacto@centralabastecimiento.com"
+        },
+        {
+          "nombre": "Proveedora Nacional",
+          "telefono": "3104561234",
+          "correo": "servicio@proveedoranacional.com"
+        },
+        {
+          "nombre": "Servicios Industriales",
+          "telefono": "3157890123",
+          "correo": "info@serviciosindustriales.com"
+        },
+        {
+          "nombre": "Distribuidores del Caribe",
+          "telefono": "3123450987",
+          "correo": "contacto@distribuidorescaribe.com"
+        },
+        {
+          "nombre": "Comercializadora Suramericana",
+          "telefono": "3191234567",
+          "correo": "ventas@comercialsuramericana.com"
+        },
+        {
+          "nombre": "Abastecimientos del Llano",
+          "telefono": "3149876543",
+          "correo": "servicio@abastecimientosllano.com"
+        },
+        {
+          "nombre": "Suministros y Equipos",
+          "telefono": "3161234567",
+          "correo": "contacto@suministrosequipos.com"
+        },
+        {
+          "nombre": "Proveedor Industrial",
+          "telefono": "3176543210",
+          "correo": "ventas@proveedorindustrial.com"
+        },
+        {
+          "nombre": "Importadora Nacional",
+          "telefono": "3112345679",
+          "correo": "info@importadoranacional.com"
+        },
+        {
+          "nombre": "Proveedora del Valle",
+          "telefono": "3159876543",
+          "correo": "contacto@proveedoravalle.com"
+        },
+        {
+          "nombre": "Logística y Distribución",
+          "telefono": "3198765431",
+          "correo": "ventas@logisticadistribucion.com"
+        },
+        {
+          "nombre": "Proveedores del Oriente",
+          "telefono": "3181234560",
+          "correo": "info@proveedoresoriente.com"
         }
-    ],
+      ]
+      ,
     "clientes": [
         {
-            "nombre": "Juan",
-            "apellido": "Pérez",
-            "telefono": "3112345678",
-            "correo": "juan.perez@example.com",
-            "direccion": "Calle 10 # 50-20, Manizales"
+          "nombre": "Carlos",
+          "apellido": "Pérez",
+          "telefono": "3145678901",
+          "correo": "carlos.perez@example.com",
+          "direccion": "Calle 12 #34-56, Medellín"
         },
         {
-            "nombre": "María",
-            "apellido": "González",
-            "telefono": "3203456789",
-            "correo": "maria.gonzalez@example.com",
-            "direccion": "Carrera 15 # 35-10, Manizales"
+          "nombre": "Lucía",
+          "apellido": "García",
+          "telefono": "3112345678",
+          "correo": "lucia.garcia@example.com",
+          "direccion": "Carrera 8 #21-45, Bogotá"
         },
         {
-            "nombre": "Andrés",
-            "apellido": "Ramírez",
-            "telefono": "3004567890",
-            "correo": "andres.ramirez@example.com",
-            "direccion": "Avenida 3 # 70-15, Manizales"
+          "nombre": "Ana",
+          "apellido": "Martínez",
+          "telefono": "3109876543",
+          "correo": "ana.martinez@example.com",
+          "direccion": "Calle 5 #67-89, Cali"
         },
         {
-            "nombre": "Sofía",
-            "apellido": "Martínez",
-            "telefono": "3105678901",
-            "correo": "sofia.martinez@example.com",
-            "direccion": "Calle 7 # 25-30, Manizales"
+          "nombre": "Juan",
+          "apellido": "Herrera",
+          "telefono": "3174567890",
+          "correo": "juan.herrera@example.com",
+          "direccion": "Avenida 6 #23-90, Bucaramanga"
         },
         {
-            "nombre": "Carlos",
-            "apellido": "Hernández",
-            "telefono": "3116789012",
-            "correo": "carlos.hernandez@example.com",
-            "direccion": "Carrera 9 # 15-40, Manizales"
+          "nombre": "María",
+          "apellido": "López",
+          "telefono": "3123456789",
+          "correo": "maria.lopez@example.com",
+          "direccion": "Carrera 7 #15-32, Cartagena"
+        },
+        {
+          "nombre": "Pedro",
+          "apellido": "González",
+          "telefono": "3198765432",
+          "correo": "pedro.gonzalez@example.com",
+          "direccion": "Calle 13 #44-21, Manizales"
+        },
+        {
+          "nombre": "Sara",
+          "apellido": "Moreno",
+          "telefono": "3134567890",
+          "correo": "sara.moreno@example.com",
+          "direccion": "Avenida 4 #56-43, Ibagué"
+        },
+        {
+          "nombre": "Javier",
+          "apellido": "Cruz",
+          "telefono": "3141234567",
+          "correo": "javier.cruz@example.com",
+          "direccion": "Carrera 12 #45-67, Pereira"
+        },
+        {
+          "nombre": "Laura",
+          "apellido": "Ríos",
+          "telefono": "3186543210",
+          "correo": "laura.rios@example.com",
+          "direccion": "Calle 9 #34-22, Armenia"
+        },
+        {
+          "nombre": "Andrés",
+          "apellido": "Villanueva",
+          "telefono": "3104561234",
+          "correo": "andres.villanueva@example.com",
+          "direccion": "Avenida 8 #32-19, Cúcuta"
+        },
+        {
+          "nombre": "Catalina",
+          "apellido": "Castro",
+          "telefono": "3157890123",
+          "correo": "catalina.castro@example.com",
+          "direccion": "Carrera 14 #21-33, Barranquilla"
+        },
+        {
+          "nombre": "Ricardo",
+          "apellido": "Torres",
+          "telefono": "3123450987",
+          "correo": "ricardo.torres@example.com",
+          "direccion": "Calle 6 #78-56, Santa Marta"
+        },
+        {
+          "nombre": "Paola",
+          "apellido": "Medina",
+          "telefono": "3191234567",
+          "correo": "paola.medina@example.com",
+          "direccion": "Avenida 3 #12-45, Neiva"
+        },
+        {
+          "nombre": "Fernando",
+          "apellido": "Díaz",
+          "telefono": "3149876543",
+          "correo": "fernando.diaz@example.com",
+          "direccion": "Carrera 5 #67-98, Pasto"
+        },
+        {
+          "nombre": "Elena",
+          "apellido": "Carvajal",
+          "telefono": "3161234567",
+          "correo": "elena.carvajal@example.com",
+          "direccion": "Calle 2 #45-32, Montería"
+        },
+        {
+          "nombre": "Daniel",
+          "apellido": "Arango",
+          "telefono": "3176543210",
+          "correo": "daniel.arango@example.com",
+          "direccion": "Carrera 3 #56-78, Popayán"
+        },
+        {
+          "nombre": "Carmen",
+          "apellido": "Ortiz",
+          "telefono": "3112345679",
+          "correo": "carmen.ortiz@example.com",
+          "direccion": "Calle 10 #22-11, Tunja"
+        },
+        {
+          "nombre": "Oscar",
+          "apellido": "Jiménez",
+          "telefono": "3159876543",
+          "correo": "oscar.jimenez@example.com",
+          "direccion": "Avenida 7 #44-55, Villavicencio"
+        },
+        {
+          "nombre": "Verónica",
+          "apellido": "Vargas",
+          "telefono": "3198765431",
+          "correo": "veronica.vargas@example.com",
+          "direccion": "Carrera 9 #12-34, Sincelejo"
+        },
+        {
+          "nombre": "Sofía",
+          "apellido": "Reyes",
+          "telefono": "3181234560",
+          "correo": "sofia.reyes@example.com",
+          "direccion": "Calle 4 #11-22, Quibdó"
         }
-    ],
-    "proveedores": [
+      ]
+      ,
+    "empleados": [
         {
-            "marca": "Yamaha",
-            "modelo": "MT-07",
-            "ano": 2023,
-            "precio": 8000.00,
-            "id_sucursal": 1,
-            "id_proveedor": 1
+          "nombre": "Carlos",
+          "apellido": "Pérez",
+          "puesto": "Gerente General",
+          "telefono": "3145678901",
+          "correo": "carlos.perez@example.com",
+          "id_sucursal": 1
         },
         {
-            "marca": "Honda",
-            "modelo": "CB500F",
-            "ano": 2022,
-            "precio": 6500.00,
-            "id_sucursal": 2,
-            "id_proveedor": 2
+          "nombre": "Lucía",
+          "apellido": "García",
+          "puesto": "Administradora",
+          "telefono": "3112345678",
+          "correo": "lucia.garcia@example.com",
+          "id_sucursal": 2
         },
         {
-            "marca": "Kawasaki",
-            "modelo": "Ninja 400",
-            "ano": 2024,
-            "precio": 7500.00,
-            "id_sucursal": 1,
-            "id_proveedor": 3
+          "nombre": "Ana",
+          "apellido": "Martínez",
+          "puesto": "Asistente de Ventas",
+          "telefono": "3109876543",
+          "correo": "ana.martinez@example.com",
+          "id_sucursal": 3
         },
         {
-            "marca": "Suzuki",
-            "modelo": "GSX250R",
-            "ano": 2021,
-            "precio": 5500.00,
-            "id_sucursal": 2,
-            "id_proveedor": 4
+          "nombre": "Juan",
+          "apellido": "Herrera",
+          "puesto": "Vendedor",
+          "telefono": "3174567890",
+          "correo": "juan.herrera@example.com",
+          "id_sucursal": 1
         },
         {
-            "marca": "BMW",
-            "modelo": "G 310 R",
-            "ano": 2023,
-            "precio": 9000.00,
-            "id_sucursal": 3,
-            "id_proveedor": 5
+          "nombre": "María",
+          "apellido": "López",
+          "puesto": "Recepcionista",
+          "telefono": "3123456789",
+          "correo": "maria.lopez@example.com",
+          "id_sucursal": 4
+        },
+        {
+          "nombre": "Pedro",
+          "apellido": "González",
+          "puesto": "Encargado de Inventario",
+          "telefono": "3198765432",
+          "correo": "pedro.gonzalez@example.com",
+          "id_sucursal": 2
+        },
+        {
+          "nombre": "Sara",
+          "apellido": "Moreno",
+          "puesto": "Asistente Administrativo",
+          "telefono": "3134567890",
+          "correo": "sara.moreno@example.com",
+          "id_sucursal": 3
+        },
+        {
+          "nombre": "Javier",
+          "apellido": "Cruz",
+          "puesto": "Supervisor de Ventas",
+          "telefono": "3141234567",
+          "correo": "javier.cruz@example.com",
+          "id_sucursal": 4
+        },
+        {
+          "nombre": "Laura",
+          "apellido": "Ríos",
+          "puesto": "Cajera",
+          "telefono": "3186543210",
+          "correo": "laura.rios@example.com",
+          "id_sucursal": 1
+        },
+        {
+          "nombre": "Andrés",
+          "apellido": "Villanueva",
+          "puesto": "Encargado de Compras",
+          "telefono": "3104561234",
+          "correo": "andres.villanueva@example.com",
+          "id_sucursal": 2
+        },
+        {
+          "nombre": "Catalina",
+          "apellido": "Castro",
+          "puesto": "Contadora",
+          "telefono": "3157890123",
+          "correo": "catalina.castro@example.com",
+          "id_sucursal": 3
+        },
+        {
+          "nombre": "Ricardo",
+          "apellido": "Torres",
+          "puesto": "Jefe de Operaciones",
+          "telefono": "3123450987",
+          "correo": "ricardo.torres@example.com",
+          "id_sucursal": 4
+        },
+        {
+          "nombre": "Paola",
+          "apellido": "Medina",
+          "puesto": "Recepcionista",
+          "telefono": "3191234567",
+          "correo": "paola.medina@example.com",
+          "id_sucursal": 1
+        },
+        {
+          "nombre": "Fernando",
+          "apellido": "Díaz",
+          "puesto": "Asistente de Recursos Humanos",
+          "telefono": "3149876543",
+          "correo": "fernando.diaz@example.com",
+          "id_sucursal": 2
+        },
+        {
+          "nombre": "Elena",
+          "apellido": "Carvajal",
+          "puesto": "Asistente de Marketing",
+          "telefono": "3161234567",
+          "correo": "elena.carvajal@example.com",
+          "id_sucursal": 3
+        },
+        {
+          "nombre": "Daniel",
+          "apellido": "Arango",
+          "puesto": "Encargado de Logística",
+          "telefono": "3176543210",
+          "correo": "daniel.arango@example.com",
+          "id_sucursal": 4
+        },
+        {
+          "nombre": "Carmen",
+          "apellido": "Ortiz",
+          "puesto": "Auxiliar de Ventas",
+          "telefono": "3112345679",
+          "correo": "carmen.ortiz@example.com",
+          "id_sucursal": 1
+        },
+        {
+          "nombre": "Oscar",
+          "apellido": "Jiménez",
+          "puesto": "Gerente de Sucursal",
+          "telefono": "3159876543",
+          "correo": "oscar.jimenez@example.com",
+          "id_sucursal": 2
+        },
+        {
+          "nombre": "Verónica",
+          "apellido": "Vargas",
+          "puesto": "Analista Financiero",
+          "telefono": "3198765431",
+          "correo": "veronica.vargas@example.com",
+          "id_sucursal": 3
+        },
+        {
+          "nombre": "Sofía",
+          "apellido": "Reyes",
+          "puesto": "Ejecutiva de Cuentas",
+          "telefono": "3181234560",
+          "correo": "sofia.reyes@example.com",
+          "id_sucursal": 4
         }
-    ],
-    "ventas": [
+      ]
+      ,
+
+    "productos": [
         {
-            "id_cliente": 1,
-            "id_producto": 1,
-            "id_empleado": 1,
-            "fecha_venta": "2024-10-01",
-            "cantidad": 1
+          "marca": "KTM",
+          "modelo": "Duke 200",
+          "ano": 2022,
+          "precio": 12000,
+          "id_sucursal": 1,
+          "id_proveedor": 3
         },
         {
-            "id_cliente": 2,
-            "id_producto": 2,
-            "id_empleado": 2,
-            "fecha_venta": "2024-10-05",
-            "cantidad": 1
+          "marca": "Honda",
+          "modelo": "CBR 500R",
+          "ano": 2021,
+          "precio": 15000,
+          "id_sucursal": 2,
+          "id_proveedor": 1
         },
         {
-            "id_cliente": 3,
-            "id_producto": 3,
-            "id_empleado": 1,
-            "fecha_venta": "2024-10-10",
-            "cantidad": 2
+          "marca": "Yamaha",
+          "modelo": "MT-07",
+          "ano": 2023,
+          "precio": 13000,
+          "id_sucursal": 3,
+          "id_proveedor": 4
         },
         {
-            "id_cliente": 4,
-            "id_producto": 4,
-            "id_empleado": 3,
-            "fecha_venta": "2024-10-15",
-            "cantidad": 1
+          "marca": "Suzuki",
+          "modelo": "GSX-R750",
+          "ano": 2020,
+          "precio": 14000,
+          "id_sucursal": 1,
+          "id_proveedor": 2
         },
         {
-            "id_cliente": 1,
-            "id_producto": 5,
-            "id_empleado": 2,
-            "fecha_venta": "2024-10-20",
-            "cantidad": 1
+          "marca": "Kawasaki",
+          "modelo": "Ninja 400",
+          "ano": 2022,
+          "precio": 12000,
+          "id_sucursal": 2,
+          "id_proveedor": 3
+        },
+        {
+          "marca": "Ducati",
+          "modelo": "Monster 821",
+          "ano": 2021,
+          "precio": 15500,
+          "id_sucursal": 4,
+          "id_proveedor": 1
+        },
+        {
+          "marca": "BMW",
+          "modelo": "G310R",
+          "ano": 2023,
+          "precio": 14000,
+          "id_sucursal": 3,
+          "id_proveedor": 4
+        },
+        {
+          "marca": "Triumph",
+          "modelo": "Street Triple",
+          "ano": 2020,
+          "precio": 16000,
+          "id_sucursal": 1,
+          "id_proveedor": 2
+        },
+        {
+          "marca": "Husqvarna",
+          "modelo": "Vitpilen 401",
+          "ano": 2022,
+          "precio": 12500,
+          "id_sucursal": 2,
+          "id_proveedor": 3
+        },
+        {
+          "marca": "Indian",
+          "modelo": "Scout Sixty",
+          "ano": 2021,
+          "precio": 18000,
+          "id_sucursal": 4,
+          "id_proveedor": 1
+        },
+        {
+          "marca": "Harley-Davidson",
+          "modelo": "Iron 883",
+          "ano": 2023,
+          "precio": 15000,
+          "id_sucursal": 3,
+          "id_proveedor": 4
+        },
+        {
+          "marca": "Aprilia",
+          "modelo": "RS 660",
+          "ano": 2022,
+          "precio": 17000,
+          "id_sucursal": 1,
+          "id_proveedor": 2
+        },
+        {
+          "marca": "KTM",
+          "modelo": "390 Duke",
+          "ano": 2021,
+          "precio": 10500,
+          "id_sucursal": 2,
+          "id_proveedor": 3
+        },
+        {
+          "marca": "Yamaha",
+          "modelo": "R3",
+          "ano": 2020,
+          "precio": 11000,
+          "id_sucursal": 4,
+          "id_proveedor": 1
+        },
+        {
+          "marca": "Honda",
+          "modelo": "CB500F",
+          "ano": 2023,
+          "precio": 13500,
+          "id_sucursal": 3,
+          "id_proveedor": 4
+        },
+        {
+          "marca": "Suzuki",
+          "modelo": "SV650",
+          "ano": 2022,
+          "precio": 12500,
+          "id_sucursal": 1,
+          "id_proveedor": 2
+        },
+        {
+          "marca": "Kawasaki",
+          "modelo": "Versys 650",
+          "ano": 2021,
+          "precio": 14000,
+          "id_sucursal": 2,
+          "id_proveedor": 3
+        },
+        {
+          "marca": "Ducati",
+          "modelo": "Panigale V2",
+          "ano": 2023,
+          "precio": 21000,
+          "id_sucursal": 4,
+          "id_proveedor": 1
+        },
+        {
+          "marca": "BMW",
+          "modelo": "F 900 R",
+          "ano": 2020,
+          "precio": 16000,
+          "id_sucursal": 3,
+          "id_proveedor": 4
         }
-    ]
+      ]
+      ,
+      
+      "ventas": [
+        {
+          "id_cliente": 1,
+          "id_producto": 2,
+          "id_empleado": 5,
+          "fecha_venta": "2024-10-01",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 2,
+          "id_producto": 1,
+          "id_empleado": 3,
+          "fecha_venta": "2024-10-02",
+          "cantidad": 2
+        },
+        {
+          "id_cliente": 3,
+          "id_producto": 4,
+          "id_empleado": 1,
+          "fecha_venta": "2024-10-03",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 1,
+          "id_producto": 3,
+          "id_empleado": 2,
+          "fecha_venta": "2024-10-04",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 4,
+          "id_producto": 2,
+          "id_empleado": 6,
+          "fecha_venta": "2024-10-05",
+          "cantidad": 3
+        },
+        {
+          "id_cliente": 5,
+          "id_producto": 1,
+          "id_empleado": 4,
+          "fecha_venta": "2024-10-06",
+          "cantidad": 2
+        },
+        {
+          "id_cliente": 2,
+          "id_producto": 3,
+          "id_empleado": 1,
+          "fecha_venta": "2024-10-07",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 3,
+          "id_producto": 4,
+          "id_empleado": 5,
+          "fecha_venta": "2024-10-08",
+          "cantidad": 2
+        },
+        {
+          "id_cliente": 1,
+          "id_producto": 5,
+          "id_empleado": 2,
+          "fecha_venta": "2024-10-09",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 4,
+          "id_producto": 3,
+          "id_empleado": 6,
+          "fecha_venta": "2024-10-10",
+          "cantidad": 2
+        },
+        {
+          "id_cliente": 2,
+          "id_producto": 1,
+          "id_empleado": 3,
+          "fecha_venta": "2024-10-11",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 5,
+          "id_producto": 2,
+          "id_empleado": 4,
+          "fecha_venta": "2024-10-12",
+          "cantidad": 3
+        },
+        {
+          "id_cliente": 3,
+          "id_producto": 1,
+          "id_empleado": 2,
+          "fecha_venta": "2024-10-13",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 1,
+          "id_producto": 4,
+          "id_empleado": 5,
+          "fecha_venta": "2024-10-14",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 2,
+          "id_producto": 5,
+          "id_empleado": 3,
+          "fecha_venta": "2024-10-15",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 4,
+          "id_producto": 3,
+          "id_empleado": 6,
+          "fecha_venta": "2024-10-16",
+          "cantidad": 2
+        },
+        {
+          "id_cliente": 5,
+          "id_producto": 2,
+          "id_empleado": 4,
+          "fecha_venta": "2024-10-17",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 3,
+          "id_producto": 4,
+          "id_empleado": 1,
+          "fecha_venta": "2024-10-18",
+          "cantidad": 2
+        },
+        {
+          "id_cliente": 1,
+          "id_producto": 5,
+          "id_empleado": 2,
+          "fecha_venta": "2024-10-19",
+          "cantidad": 1
+        },
+        {
+          "id_cliente": 2,
+          "id_producto": 3,
+          "id_empleado": 3,
+          "fecha_venta": "2024-10-20",
+          "cantidad": 1
+        }
+      ]
+      
 }
